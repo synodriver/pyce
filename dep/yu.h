@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <windows.h>
 #include <iostream>
@@ -5,7 +6,7 @@
 #include <cstdlib>
 #include <Tlhelp32.h>
 #include <string>
-#include "Getmod.h"
+#include "Getmode.h"
 using namespace std;
 //参数分别为：进程句柄、特征码、偏移、读取长度、开始扫描位地置、扫描结束位置
 uintptr_t hanshu_dizhi; //记录特征码对应的地址
@@ -526,7 +527,7 @@ BOOL InjectDLL(const wchar_t* DllFullPath, const DWORD dwRemoteProcessId)
 
 	// 调用Kernel32.dll中的LoadLibraryW方法用以加载DLL文件
 	PTHREAD_START_ROUTINE pfnStartAssr =
-		(PTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle(L"Kernel32.dll"),
+		(PTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle((LPCSTR)L"Kernel32.dll"),
 		"LoadLibraryW");
 
 	// 在远程进程中开辟线程

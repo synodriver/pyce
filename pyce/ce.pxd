@@ -39,7 +39,7 @@ cdef extern from "yu.h" nogil:
         bool EnableDebugPrivilege(bool fEnable)
         bool ReadProcessMemory(DWORD dwProcessID, void * pvBaseAddress, void * pvBuffer, DWORD cbRead,
                                DWORD *pdwNumberOfBytesRead)
-
-    uintptr_t ScanAddress(HANDLE process, char *markCode, int nOffset, unsigned long dwReadLen, uintptr_t StartAddr,
+    HANDLE OpenProcess(DWORD,bool,DWORD)
+    uintptr_t ScanAddress(HANDLE process, char *markCode, int nOffset,  unsigned long dwReadLen, uintptr_t StartAddr,
                           uintptr_t EndAddr, int InstructionLen)
     bool InjectDLL(wchar_t * DllFullPath, DWORD dwRemoteProcessId)

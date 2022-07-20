@@ -108,8 +108,8 @@ BOOL TToolhelp::ModuleFind_ModName(WCHAR *pszModName, PMODULEENTRY32 pme)
 	BOOL R = ModuleFirst(pme);
 	while (R)
 	{
-		if (lstrcmpi(pme->szModule, pszModName) == 0 ||
-			lstrcmpi(pme->szExePath, pszModName) == 0) break;
+		if (lstrcmpi(pme->szModule, (LPCSTR)pszModName) == 0 ||
+			lstrcmpi(pme->szExePath, (LPCSTR)pszModName) == 0) break;
 		R = ModuleNext(pme);
 	}
 	return R;
@@ -220,5 +220,5 @@ BOOL TToolhelp::EnableDebugPrivilege(BOOL fEnable)
 BOOL TToolhelp::ReadProcessMemory(DWORD dwProcessID, void * pvBaseAddress, void * pvBuffer,
 	DWORD cbRead, DWORD *pdwNumberOfBytesRead)
 {
-	return Toolhelp32ReadProcessMemory(dwProcessID, pvBaseAddress, pvBuffer, cbRead, pdwNumberOfBytesRead);
+	return Toolhelp32ReadProcessMemory(dwProcessID, pvBaseAddress, pvBuffer, cbRead, (SIZE_T *)pdwNumberOfBytesRead);
 }
