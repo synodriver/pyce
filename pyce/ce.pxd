@@ -1,3 +1,6 @@
+# cython: language_level=3
+# cython: cdivision=True
+# distutils: language=c++
 from libcpp cimport bool
 from libc.stdint cimport uintptr_t
 cdef extern from "<wchar.h>" nogil:
