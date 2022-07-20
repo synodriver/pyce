@@ -1,3 +1,6 @@
+# cython: language_level=3
+# cython: cdivision=True
+# distutils: language=c++
 from pyce.ce cimport TToolhelp as TToolhelp_C, DWORD, bool
 
 
